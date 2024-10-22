@@ -173,15 +173,11 @@ class AdminController extends Controller
 
         $data = shop::find($id);
 
-        $dir = 'image';
 
-        // アップロードされたファイル名を取得
-        $file_name = $request->file('image')->getClientOriginalName();
-
-        // 取得したファイル名で保存
-        // storage/app/public/任意のディレクトリ名/
-        $request->file('image')->storeAs('public/' . $dir, $file_name);
-
+        $image = $request->file('image');
+        $name = time() . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $name);
         // if ($image) {
 
         //     $imagename = time() . '.' . $image->getClientOriginalExtension();
@@ -200,6 +196,7 @@ class AdminController extends Controller
         $data->tell = $request->tell;
         $data->holiday = $request->holiday;
         $data->map = $request->map;
+        $data->image = $name;
 
         $data->category_id = $request->category;
 

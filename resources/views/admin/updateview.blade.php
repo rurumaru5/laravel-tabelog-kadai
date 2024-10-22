@@ -141,7 +141,7 @@
               <div style="padding:15px;">
                 <label>今までの写真</label>
 
-                <img height="100" width="100" src="images/{{$data->image}}">
+                <img height="100" width="100" src="{{asset('images/'.$data->image)}}">
               </div>
 
               <div style="padding:15px;">

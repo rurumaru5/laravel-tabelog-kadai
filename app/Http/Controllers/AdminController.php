@@ -72,8 +72,11 @@ class AdminController extends Controller
     {
 
         $data = new shop;
+        $image = $request->file('image');
+        $name = time() . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $name);
 
-        $data->image = $request->image;
         // $image = $request->image;
         // $imagename = time() . '.' . $image->getClientOriginalExtension();
 
@@ -91,6 +94,7 @@ class AdminController extends Controller
         $data->tell = $request->tell;
         $data->holiday = $request->holiday;
         $data->map = $request->map;
+        $data->image = $name;
 
         $data->category_id = $request->category;
 

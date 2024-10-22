@@ -74,9 +74,7 @@
           <div class="col-md-8 ">
             <div class="item">
               <div style="padding: 20px;" class="thumb">
-                <a href="shop_details">
-                  <img style="height: 300px; width:800px;" src="images/{{$shop->image}}">
-                </a>
+                <img style="height: 300px; width:800px;" src="/public/images/{{$shop->image}}">
               </div>
               <div class="down-content">
                 <span class="category"></span>

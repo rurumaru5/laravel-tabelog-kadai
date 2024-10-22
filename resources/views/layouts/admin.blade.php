@@ -13,7 +13,7 @@
   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
   <!-- Scripts -->
-  @vite(['resources/sass/app.scss','resources/js/app.js'])
+  @vite(['resources/css/app.css','resources/sass/app.scss','resources/js/app.js'])
   <script src="https://kit.fontawesome.com/3cc5529120.js" crossorigin="anonymous"></script>
 
   <!-- Styles -->

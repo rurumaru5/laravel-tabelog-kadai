@@ -13,6 +13,11 @@
                 <!-- Navigation Links -->
                 <!-- ダッシュボード -->
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ url('home')}}" :active="request()->routeIs('index')">
+                        {{ __('adminホーム ') }}
+                    </x-nav-link>
+                </div>
 
                 @auth
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -21,6 +26,7 @@
                     </x-nav-link>
                 </div>
                 @else
+
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ url('login')}}" :active="request()->routeIs('login')">

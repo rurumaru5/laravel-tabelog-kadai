@@ -34,8 +34,7 @@ use function Ramsey\Uuid\v1;
 // });
 
 
-Route::get('/home', [AdminController::class, 'index'])->name('home');
-
+Route::get('/home', [AdminController::class, 'index'])->middleware('auth');
 
 
 //Route::get('/redirect', [HomeController::class, 'redirect']);

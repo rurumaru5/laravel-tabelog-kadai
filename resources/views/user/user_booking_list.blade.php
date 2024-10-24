@@ -50,47 +50,56 @@
 
 
   <h1>予約リスト</h1>
+  <div class="container">
+    <div class="row justify-content-center">
 
-  <div class=" m-3" align="center">
-    <table>
+      <span>
+        <a href="{{url('mypage') }}">戻る</a>
+      </span>
+      <div>
+        <div class=" m-3" align="center">
 
-      <tr style="background-color:grey">
+          <table>
 
-        <td style="padding: 20px;"> 店舗</td>
-        <td style="padding: 20px;"> 予約日</td>
-        <td style="padding: 20px;"> 予約時間</td>
-        <td style="padding: 20px;"> 人数</td>
-        <td style="padding: 20px;"></td>
-        <td style="padding: 20px;"></td>
-      </tr>
+            <tr style="background-color:grey">
 
-
-
-
-      @foreach($data as $book)
-
-      <tr align="center" style="background-color: white;  border: 1px solid black;">
-        <td>{{ $book->Shop->name}}</td>
-        <td>{{ $book->book_date }}</td>
-        <td>{{ $book->book_time }}</td>
-        <td>{{ $book->number }}</td>
-        <td>
-          <a class="btn btn-primary" href="{{url('update_book',$book->id)}}"> 変更</a>
-        </td>
-
-        <td>
-
-          <a class="btn btn-danger" href="{{url('delete_book',$book->id)}}" onclick='return confirm("本当に削除しますか？")'> キャンセル</a>
+              <td style="padding: 20px;"> 店舗</td>
+              <td style="padding: 20px;"> 予約日</td>
+              <td style="padding: 20px;"> 予約時間</td>
+              <td style="padding: 20px;"> 人数</td>
+              <td style="padding: 20px;"></td>
+              <td style="padding: 20px;"></td>
+            </tr>
 
 
-        </td>
-      </tr>
-      @endforeach
 
-    </table>
+
+            @foreach($data as $book)
+
+            <tr align="center" style="background-color: white;  border: 1px solid black;">
+              <td>{{ $book->Shop->name}}</td>
+              <td>{{ $book->book_date }}</td>
+              <td>{{ $book->book_time }}</td>
+              <td>{{ $book->number }}</td>
+              <td>
+                <a class="btn btn-primary" href="{{url('update_book',$book->id)}}"> 変更</a>
+              </td>
+
+              <td>
+
+                <a class="btn btn-danger" href="{{url('delete_book',$book->id)}}" onclick='return confirm("本当に削除しますか？")'> キャンセル</a>
+
+
+              </td>
+            </tr>
+            @endforeach
+
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-
-
+  </div>
   <!-- Scripts -->
   @include('user.script')
 

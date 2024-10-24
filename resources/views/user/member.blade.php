@@ -20,9 +20,15 @@
     </div>
   </div>
   <!-- partial -->
+
   <div class="container">
+
     <div class="row justify-content-center">
+
       <div class="col-md-8">
+        <div class="text-right">
+          <a href="{{ url('mypage') }}">＜ 戻る</a>
+        </div>
         <div class="card">
           <div class="card-header">{{ Auth::user()->name }}さんの情報</div>
 
@@ -83,7 +89,7 @@
               </ul>
             </div>
 
-            <p><a href="{{url('home')}}">メニューページに戻る</a></p>
+            <p><a href="{{url('/')}}">メニューページに戻る</a></p>
 
           </div>
 

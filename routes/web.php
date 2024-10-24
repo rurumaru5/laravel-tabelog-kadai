@@ -95,7 +95,6 @@ Route::post('/updatecategory/{id}', [AdminController::class, 'updatecategory']);
 
 Route::get('/shop_details/{id}', [HomeController::class, 'shop_details']);
 
-
 Route::post('/add_booking/{id}', [HomeController::class, 'add_booking'])->middleware('auth');
 
 Route::get('/search', [SearchController::class, 'search']);
@@ -139,7 +138,7 @@ Route::get('/register_card', [UserController::class, 'register_card'])->name('us
 
 Route::post('token',  [UserController::class, 'token'])->name('token');
 
-Route::get('/member', [UserController::class, 'member']);
+Route::get('/member', [UserController::class, 'member'])->middleware('auth');
 Route::get('/info',  [UserController::class, 'info']);
 Route::post('/paid',  [UserController::class, 'paid']);
 Route::post('/cancel',  [UserController::class, 'cancel']);

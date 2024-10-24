@@ -50,25 +50,46 @@
           </div>
           @endif
           <h2>店舗</h2>
+          <div class="text-right">
+            <a href="{{ url('/') }}">＜ 戻る</a>
+          </div>
         </div>
+        @auth
         <!-- お気に入りボタン -->
         <div class="row justify-content-left">
           @if($favorite)
           <div class="col-md-3">
+            <!-- 有料会員（statusが1の場合）のとき処理(お気に入りの登録解除)が実行されるようにしたい-->
+            @if($user->status == '1')
             <form action="{{url('unfavorite',$shop->id)}}" method="post">
               @csrf
               <input type="submit" value="お気に入り解除" class="btn btn-danger">
             </form>
+            @else
+            <form action="{{url('member')}}" method="get">
+              @csrf
+              <input type="submit" value="お気に入り解除" class="btn btn-danger">
+            </form>
+            @endif
           </div>
           @else
           <div class="col-md-3">
+            <!-- ここも上と同じようにする -->
+            @if($user->status == '1')
             <form action="{{url('favorite',$shop->id)}}" method="post">
               @csrf
               <input type="submit" value="お気に入り登録" class="btn btn-success">
             </form>
+            @else
+            <form action="{{url('member')}}" method="get">
+              @csrf
+              <input type="submit" value="お気に入り登録" class="btn btn-success">
+            </form>
+            @endif
           </div>
           @endif
         </div>
+        @endauth
         <!-- ここまでお気に入りボタン -->
         <div class="row">
           <div class="col-md-8 ">
@@ -87,6 +108,7 @@
               <h4 style="padding: 12px">住所:{{$shop->address}}</h4>
             </div>
           </div>
+          @auth
           <div class="col-md-4">
             <h2 style="font-size: 30px!important;">店舗予約</h2>
             @if($errors)
@@ -96,6 +118,8 @@
             </li>
             @endforeach
             @endif
+
+            @if($user->status == '1')
             <form action="{{url('add_booking',$shop->id)}}" method="Post">
               @csrf
               <input type="hidden" name="user_id" value="{{$user_id}}">
@@ -127,25 +151,48 @@
                 <input type="submit" class="btn btn-primary" value="予約">
               </div>
             </form>
+            @else
+            <form action="{{url('member')}}" method="get">
+              @csrf
+              <input type="hidden" name="user_id" value="{{$user_id}}">
+              <div>
+                <label>予約日</label>
+                <input type="date" name="book_date" id="book_date" required="">
+              </div>
+              <div>
+                <label>予約時間</label>
+                <input type="time" name="book_time" required="">
+              </div>
+              <div>
+                <label>予約人数</label>
+                <select class="form-select" name="number" required="">
+                  <option selected>人数</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <div style="padding-top: 20px;">
+                <input type="submit" class="btn btn-primary" value="予約">
+              </div>
+            </form>
+            @endif
           </div>
+          @endauth
           <div>
             @include('home.review')
           </div>
-
-
-
-
-
         </div>
       </div>
     </div>
-
   </div>
-
-
-
-
-
   <!-- Scripts -->
   @include('home.script')
   <script type="text/javascript">

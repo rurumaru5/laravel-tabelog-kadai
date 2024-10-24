@@ -13,13 +13,14 @@
                 <!-- Navigation Links -->
                 <!-- ダッシュボード -->
 
+                @auth
+                @if (Auth::user()->usertype == '1')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ url('home')}}" :active="request()->routeIs('index')">
                         {{ __('adminホーム ') }}
                     </x-nav-link>
                 </div>
-
-                @auth
+                @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ url('mypage')}}" :active="request()->routeIs('mypage')">
                         {{ __('マイページ') }}
@@ -39,7 +40,6 @@
                     </x-nav-link>
                 </div>
                 @endauth
-
 
 
 
@@ -75,14 +75,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
-                            </div>
 
-                            <x-dropdown-link href="{{ url('profile.show') }}">
-                                {{ __('Profile') }}
-                            </x-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                             <x-dropdown-link href="{{ url('api-tokens.index') }}">

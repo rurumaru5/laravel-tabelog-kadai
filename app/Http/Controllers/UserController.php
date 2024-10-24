@@ -21,9 +21,9 @@ class UserController extends Controller
 
             if ($usertype == '0') {
 
-                return view('user.mypage');
+                return view('user.mypage', compact('usertype'));
             } else if ($usertype == '1') {
-                return view('admin.mypage'); //admin.homeで今までの
+                return view('admin.mypage', compact('usertype')); //admin.homeで今までの
             } else {
                 return redirect()->back();
             }

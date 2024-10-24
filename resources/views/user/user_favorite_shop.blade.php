@@ -50,30 +50,40 @@
 
 
   <h1>お気に入りリスト</h1>
+  <div class="container">
+    <div class="row justify-content-center">
 
-  <div class=" m-3" align="center">
-    <table>
+      <span>
+        <a href="{{url('mypage') }}">戻る</a>
+      </span>
+      <div>
+        <div class=" m-3" align="center">
+          <table>
 
-      <tr style="background-color:grey">
+            <tr style="background-color:grey">
 
-        <td style="padding: 20px;"> 店舗</td>
-        <td style="padding: 20px;"></td>
-        <td style="padding: 20px;"></td>
-      </tr>
-      @foreach($shops as $shop)
-      <tr align="center" style="background-color: white;  border: 1px solid black;">
-        <td>{{ $shop->name}}</td>
-        <td>
-          <form id="unfavorite" action="{{url('unfavorite',$shop->id)}}" method="post">
-            @csrf
-            <input type="submit" value="お気に入り解除" class="btn btn-danger">
-          </form>
-        </td>
-      </tr>
-      @endforeach
+              <td style="padding: 20px;"> 店舗</td>
+              <td style="padding: 20px;"></td>
+              <td style="padding: 20px;"></td>
+            </tr>
+            @foreach($shops as $shop)
+            <tr align="center" style="background-color: white;  border: 1px solid black;">
+              <td>{{ $shop->name}}</td>
+              <td>
+                <form id="unfavorite" action="{{url('unfavorite',$shop->id)}}" method="post">
+                  @csrf
+                  <input type="submit" value="お気に入り解除" class="btn btn-danger">
+                </form>
+              </td>
+            </tr>
+            @endforeach
 
-    </table>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
+
 
 
   <!-- Scripts -->

@@ -39,8 +39,7 @@ class HomeController extends Controller
             $data->name = $request->name;
             $searchWord = $request->input('searchWord');
             $categoryId = $request->input('categoryId');
-
-
+            $usertype = Auth()->user()->usertype;
 
             return view('home.index', compact('data', 'searchWord', 'categoryId'));
         } else {
@@ -59,23 +58,13 @@ class HomeController extends Controller
 
     public function shop_details(Shop $shop, $id)
     {
-
+        $user = Auth::user(); //ここ追加
         $user_id = Auth::id();
         $shop = Shop::find($id);
         $favorite = Favorite::where('user_id', $user_id)->where('shop_id', $shop->id)->exists();
-
         $number = array();
         $address = new Shop;
         $address->address;
-        // $myKey = "AIzaSyA4VG8YCxoOOtPOce0SxDJrltstpN8hrP0";
-        // $address = urlencode($address);
-        // $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $address . "+CA&key=" . $myKey;
-        // $contents = file_get_contents($url);
-        // $jsonData = json_decode($contents, true);
-
-        // $lat = $jsonData["results"][0]["geometry"]["location"]["lat"];
-        // $lng = $jsonData["results"][0]["geometry"]["location"]["lng"];
-
 
         for ($i = 1; $i < 11; $i++) {
             $number[$i] = $i;
@@ -83,8 +72,9 @@ class HomeController extends Controller
         $reviews = $shop->reviews;
 
 
-        return view('home.shop_details', compact('shop', 'reviews', 'user_id', 'favorite'));
+        return view('home.shop_details', compact('user', 'shop', 'reviews', 'user_id', 'favorite'));
     }
+
 
 
     public function add_booking(Request $request, $id)

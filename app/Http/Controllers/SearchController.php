@@ -77,14 +77,17 @@ class SearchController extends Controller
 
     public function search_book(Request $request)
     {
+
+
         $book = User::all();
         // 検索するテキスト取得
         $keyword = $request->input('keyword');
-        $query = Book::query();
+        $query = Book::with(['user:id,name']);
 
         // 検索するテキストが入力されている場合のみ
         if (!empty($keyword)) {
-            $query->where('user_id', 'like', '%' . $keyword . '%') //ここ直す
+            $query->join('users', 'users.id', '=', 'books.user_id')
+                ->where('name', 'like', '%' . $keyword . '%') //ここ直す
                 ->orWhere('book_date', 'LIKE', "%{$keyword}%");
         }
 
@@ -103,7 +106,7 @@ class SearchController extends Controller
 
         // 検索するテキストが入力されている場合のみ
         if (!empty($keyword)) {
-            $query->where('name', 'like', '%' . $keyword . '%') //ここ直す
+            $query->where('name', 'like', '%' . $keyword . '%')
                 ->orWhere('id', 'LIKE', "%{$keyword}%");
         }
 

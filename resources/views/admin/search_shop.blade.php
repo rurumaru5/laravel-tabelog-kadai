@@ -44,7 +44,16 @@
 
           @endif
 
-
+          <div>
+            <form action="{{url('search_shop')}}" method="get" class="row g-1">
+              <div class="col-auto">
+                <input type="text" name="keyword" class="form-control nagoyameshi-header-search-input">
+              </div>
+              <div style="padding: 5px;" class="col-auto">
+                <button type="submit" class="btn nagoyameshi-header-search-button"><i class="fas fa-search nagoyameshi-header-search-icon"></i></button>
+              </div>
+            </form>
+          </div>
 
 
           <table>

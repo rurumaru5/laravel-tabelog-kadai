@@ -10,15 +10,12 @@
 <body>
 
   <!-- partial -->
-  <div class="d-flex" id="wrapper">
-    <!-- Sidebar-->
 
-    <!-- Page content wrapper-->
-    <div id="page-content-wrapper">
-      <!-- Top navigation-->
-      @include('admin.header')
-    </div>
-  </div>
+  <!-- Top navigation-->
+
+  @include('admin.header')
+
+
   <!-- partial -->
 
   <div class="container">

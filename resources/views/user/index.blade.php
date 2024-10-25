@@ -22,7 +22,7 @@
 
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
-    @include('user.nav')
+    @include('admin.header')
   </header>
   <!-- ***** Header Area End ***** -->
   <!-- section1 start -->

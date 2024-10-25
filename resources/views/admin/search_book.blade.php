@@ -41,7 +41,7 @@
                 <input type="text" name="keyword" class="form-control nagoyameshi-header-search-input">
               </div>
               <div style="padding: 5px;" class="col-auto">
-                <button type="submit" class="btn samuraimart-header-search-button"><i class="fas fa-search samuraimart-header-search-icon"></i></button>
+                <button type="submit" class="btn nagoyameshi-header-search-button"><i class="fas fa-search samuraimart-header-search-icon"></i></button>
               </div>
             </form>
           </div>

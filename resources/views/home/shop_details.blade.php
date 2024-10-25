@@ -27,7 +27,7 @@
 
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
-    @include('admin.header')
+    @include('home.header')
   </header>
   <!-- ***** Header Area End ***** -->
   <div class="section most-played">

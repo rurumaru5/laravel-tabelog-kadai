@@ -86,7 +86,7 @@
           <div class="col-md-8 ">
             <div class="item">
               <div style="padding: 20px;" class="thumb">
-                <img style="height: 300px; width:800px;" src="{{asset('images/'.$shop->image)}}">
+                <img style="height: 300px; width:400px;" src="{{asset('images/'.$shop->image)}}">
               </div>
               <div class="down-content">
                 <span class="category"></span>

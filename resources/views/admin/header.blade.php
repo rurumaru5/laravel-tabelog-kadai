@@ -1,3 +1,1 @@
-<x-admin-layout>
-
-</x-admin-layout>
+@extends('layouts.app')

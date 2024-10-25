@@ -1,59 +1,64 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+@extends('layouts.app')
 
-        <x-validation-errors class="mb-4" />
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h3 class="mt-3 mb-3">ログイン</h3>
 
-        @if (session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ session('status') }}
-        </div>
-        @endif
+            <hr>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+                <div class="form-group">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror nagoyameshi-login-input" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="メールアドレス">
 
-            <div>
-                <h3>会員でログインの場合</h3>
-                <p>メールアドレス:test@example.com</p>
-                <p>パスワード:password</p>
-                <br>
-                <h3>管理者でログインの場合</h3>
-                <p>メールアドレス:admin@gmail.com</p>
-                <p>パスワード:password</p>
-                <br>
-            </div>
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>メールアドレスが正しくない可能性があります。</strong>
+                    </span>
+                    @enderror
+                </div>
 
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
+                <div class="form-group">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror nagoyameshi-login-input" name="password" required autocomplete="current-password" placeholder="パスワード">
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>パスワードが正しくない可能性があります。</strong>
+                    </span>
+                    @enderror
+                </div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                        <label class="form-check-label nagoyameshi-check-label w-100" for="remember">
+                            次回から自動的にログインする
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="mt-3 btn nagoyameshi-submit-button w-100">
+                        ログイン
+                    </button>
+
+                    <a class="btn btn-link mt-3 d-flex justify-content-center nagoyameshi-login-text" href="{{ route('password.request') }}">
+                        パスワードをお忘れの場合
+                    </a>
+                </div>
+            </form>
+
+            <hr>
+
+            <div class="form-group">
+                <a class="btn btn-link mt-3 d-flex justify-content-center nagoyameshi-login-text" href="{{ route('register') }}">
+                    新規登録
                 </a>
-                @endif
-
-                <x-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-button>
             </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+        </div>
+    </div>
+</div>
+@endsection

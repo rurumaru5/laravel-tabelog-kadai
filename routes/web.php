@@ -15,6 +15,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ShopController;
 use App\Models\Favorite;
+use Illuminate\Support\Facades\Auth;
 
 use function Ramsey\Uuid\v1;
 
@@ -33,7 +34,7 @@ use function Ramsey\Uuid\v1;
 //     return view('home.index');
 // });
 
-
+Auth::routes();
 Route::get('/home', [AdminController::class, 'index'])->middleware('auth');
 
 
@@ -41,6 +42,7 @@ Route::get('/home', [AdminController::class, 'index'])->middleware('auth');
 // Home Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Auth::routes(['verify' => true]);
 // Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
 
 //Dashboard
@@ -85,6 +87,7 @@ Route::post('/updatebook/{id}', [AdminController::class, 'updatebook']);
 
 Route::get('/showcategory', [AdminController::class, 'showcategory']);
 
+Route::get('/deleteuser/{id}', [AdminController::class, 'deleteuser']);
 
 
 Route::get('/deletecategory/{id}', [AdminController::class, 'deletecategory']);

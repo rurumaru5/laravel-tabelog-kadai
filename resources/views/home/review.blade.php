@@ -12,13 +12,18 @@
         <p class="h3">{{$review->comment}}</p>
         <label>{{$review->created_at}} {{$review->user->name}}</label>
         @auth
+
         @if($user->status == '1')
+        @if (Auth::user()->id == $review->user_id)
         <a class="btn btn-primary" href="{{url('edit_review',$review->id)}}"> 編集</a>
         <a class="btn btn-danger" href="{{url('delete_review',$review->id)}}" onclick='return confirm("本当に削除しますか？")'> 削除</a>
+        @else
+        @endif
         @else
         <a class="btn btn-primary" href="{{url('member')}}"> 編集</a>
         <a class="btn btn-danger" href="{{url('member')}}"> 削除</a>
         @endif
+
         @endauth
       </div>
       @endforeach
